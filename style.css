@@ -1,0 +1,32 @@
+header {
+  border: 1px solid black;
+  height: 120px;
+  width: 80%;
+  margin: auto;
+}
+.underscore {
+  border: 1px solid black;
+  height: 300px;
+  width: 80%;
+  margin: auto;
+  font-size: 300%;
+}
+
+.rightGuess {
+  border: 1px solid black;
+  height: 120px;
+  width: 80%;
+  margin: auto;
+  font-size: 100%;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+.wrongGuess {
+  border: 1px solid black;
+  height: 120px;
+  width: 80%;
+  margin: auto;
+  font-size: 100%;
+  font-weight: 500;
+  word-wrap: break-word;
+}
