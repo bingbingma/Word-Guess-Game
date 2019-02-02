@@ -19,10 +19,30 @@ const songs = [
   "gorgeous"
 ];
 //show which album it is from?
+const albums = [
+  "1989",
+  "1989",
+  "Reputation",
+  "of the same name",
+  "Speak Now",
+  "RED",
+  "1989",
+  "1989",
+  "Speak Now",
+  "1989",
+  "1989",
+  "RED",
+  "RED",
+  "Reputation"
+];
+console.log(songs);
+console.log(albums);
 //Choose word randomly
 let randNum = Math.floor(Math.random() * songs.length);
 //the chosenWord for the randomly selected song
 let chosenWord = songs[randNum];
+//the chosenAlbum  for the randomly selected song
+let chosenAlbum = albums[randNum];
 //array to store correct letter guesses
 let rightWord = [];
 //array to store incorrect letter guesses
@@ -37,9 +57,15 @@ let space = 0;
 let docUnderScore = document.getElementsByClassName("underscore");
 let docRightGuess = document.getElementsByClassName("rightGuess");
 let docWrongGuess = document.getElementsByClassName("wrongGuess");
+let docAlbum = document.getElementsByClassName("fromAlbum");
 
 //Main Game==================================================================>
 console.log(chosenWord);
+console.log(chosenAlbum);
+
+//Adds album hint to DOM
+docAlbum[0].innerHTML = "HINT: From the Album " + chosenAlbum;
+
 //Create underscores based on length of word
 let makeUnderscore = () => {
   for (let i = 0; i < chosenWord.length; i++) {
@@ -70,17 +96,16 @@ document.addEventListener("keypress", event => {
     rightWord.push(keyword);
     console.log("rightWord array: " + rightWord);
 
-    //replaces underscore with correct letter
+    //replaces underscore with correctly pressed letter based on indexOf
+    for (var i = 0; i < chosenWord.length; i++) {
+      if (chosenWord[i] === keyword) {
+        underScore[i] = keyword;
+        docUnderScore[0].innerHTML = underScore.join("&nbsp;");
+        //adds rightWord to the DOM
+        docRightGuess[0].innerHTML = rightWord.join("&nbsp;");
+      }
+    }
 
-    underScore[chosenWord.indexOf(keyword)] = keyword;
-    docUnderScore[0].innerHTML = underScore.join("&nbsp;");
-    //adds rightWord to the DOM
-    docRightGuess[0].innerHTML = rightWord.join("&nbsp;");
-
-    // replace underscore with the correct letter
-    underScore[chosenWord.indexOf(keyword)] = keyword;
-    // trying to overload indexof to match both letters but this did not work
-    // underScore[chosenWord.indexOf(chosenWord.indexOf(keyword) + 1)] = keyword;
     if (underScore.join("") == chosenWord) {
       alert("you win");
       location.reload();
@@ -101,3 +126,16 @@ document.addEventListener("keypress", event => {
 //If right push to correct array
 //If wrong push to incorrect array
 //Populate
+
+//failed code snippets
+//this only replaced the first instance of the word
+// underScore[chosenWord.indexOf(keyword)] = keyword;
+// docUnderScore[0].innerHTML = underScore.join("&nbsp;");
+// //adds rightWord to the DOM
+// docRightGuess[0].innerHTML = rightWord.join("&nbsp;");
+
+// // replace underscore with the correct letter
+// underScore[chosenWord.indexOf(keyword)] = keyword;
+
+// // trying to overload indexof to match both letters but this did not work
+// // underScore[chosenWord.indexOf(chosenWord.indexOf(keyword) + 1)] = keyword;
